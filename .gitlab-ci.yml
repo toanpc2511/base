@@ -1,0 +1,80 @@
+stages:
+  - install
+  - build
+  - deploy
+
+cache:
+  key: node_modules_sun_oil_fe
+  paths:
+    - node_modules/
+
+install_dependencies_master:
+  image: node:14
+  stage: install
+  before_script:
+    - node -v
+    - npm -v
+  script:
+    - yarn
+  only:
+    - master
+
+build_master:
+  only:
+    - master
+  stage: build
+  environment:
+    name: master
+    url: https://sun-oil.web.app
+  image: node:14
+  script:
+    - yarn build-prod
+  artifacts:
+    expire_in: 1 day
+    paths:
+      - dist/
+
+deploy_master:
+  only:
+    - master
+  stage: deploy
+  environment:
+    name: master
+    url: https://sun-oil.web.app
+  image: andreysenov/firebase-tools:9.13.1-node12
+  script:
+    - firebase deploy --only hosting:production -m "Pipeline $CI_PIPELINE_ID, build $CI_BUILD_ID" --token $FIREBASE_TOKEN
+
+install_dependencies_develop:
+  image: node:14
+  stage: install
+  before_script:
+    - node -v
+    - npm -v
+  script:
+    - yarn
+  only:
+    - develop
+
+build_develop:
+  only:
+    - develop
+  stage: build
+  image: node:14
+  script:
+    - yarn build-staging
+  artifacts:
+    expire_in: 1 day
+    paths:
+      - dist/
+
+deploy_develop:
+  only:
+    - develop
+  stage: deploy
+  environment:
+    name: develop
+    url: https://sun-oil-staging.web.app
+  image: andreysenov/firebase-tools:9.13.1-node12
+  script:
+    - firebase deploy --only hosting:staging -m "Pipeline $CI_PIPELINE_ID, build $CI_BUILD_ID" --token $FIREBASE_TOKEN
