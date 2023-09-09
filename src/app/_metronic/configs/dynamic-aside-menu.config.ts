@@ -283,25 +283,6 @@ export const DynamicAsideMenuConfig = {
       translate: 'MENU.FEATURES',
       bullet: 'dot'
     },
-    {
-      title: 'eCommerce',
-      bullet: 'dot',
-      icon: 'flaticon2-list-2',
-      svg: './assets/media/svg/icons/Shopping/Cart3.svg',
-      root: true,
-      permission: 'accessToECommerceModule',
-      page: '/ecommerce',
-      submenu: [
-        {
-          title: 'Customers',
-          page: '/ecommerce/customers'
-        },
-        {
-          title: 'Products',
-          page: '/ecommerce/products'
-        }
-      ]
-    },
     { section: 'Custom' },
     {
       title: 'Error Pages',

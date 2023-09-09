@@ -12,11 +12,6 @@ const routes: Routes = [
         loadChildren: () => import('./dashboard/dashboard.module').then((m) => m.DashboardModule)
       },
       {
-        path: 'ecommerce',
-        loadChildren: () =>
-          import('../modules/e-commerce/e-commerce.module').then((m) => m.ECommerceModule)
-      },
-      {
         path: 'table',
         loadChildren: () => import('./table-demo/table-demo.module').then((m) => m.TableDemoModule)
       },

@@ -3,14 +3,13 @@ import { InMemoryDbService } from 'angular-in-memory-web-api';
 import { Observable } from 'rxjs';
 import { UsersTable } from './fake-db/users.table';
 import { CarsTable } from './fake-db/cars.table';
-// ECommerce
-import { ECommerceDataContext } from '../modules/e-commerce/_fake/fake-server/_e-commerce.data-context';
+import { ECommerceDataContext } from '../pages/table-demo/fake-server/_e-commerce.data-context';
 
 @Injectable({
-  providedIn: 'root',
+  providedIn: 'root'
 })
 export class FakeAPIService implements InMemoryDbService {
-  constructor() { }
+  constructor() {}
 
   /**
    * Create Fake DB and API
@@ -28,8 +27,7 @@ export class FakeAPIService implements InMemoryDbService {
       // products
       products: ECommerceDataContext.cars,
       productRemarks: ECommerceDataContext.remarks,
-      productSpecs: ECommerceDataContext.carSpecs,
-
+      productSpecs: ECommerceDataContext.carSpecs
     };
     return db;
   }

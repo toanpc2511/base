@@ -4,8 +4,8 @@ import { Observable, forkJoin } from 'rxjs';
 import { map, exhaustMap } from 'rxjs/operators';
 import { baseFilter } from 'src/app/_fake/fake-helpers/http-extenstions';
 import { TableService, ITableState, TableResponseModel } from 'src/app/_metronic/shared/crud-table';
-import { Customer } from 'src/app/modules/e-commerce/_models/customer.model';
 import { environment } from 'src/environments/environment';
+import { Customer } from './_model/customer.model';
 
 @Injectable({
   providedIn: 'root'

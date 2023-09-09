@@ -3,7 +3,7 @@ import { LayoutService } from '../../../../core';
 
 @Component({
   selector: 'app-dashboard-wrapper',
-  templateUrl: './dashboard-wrapper.component.html',
+  templateUrl: './dashboard-wrapper.component.html'
 })
 export class DashboardWrapperComponent implements OnInit {
   demo: string;

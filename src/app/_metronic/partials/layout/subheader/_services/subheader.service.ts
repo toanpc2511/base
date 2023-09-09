@@ -7,19 +7,15 @@ import { SubheaderModel } from '../_models/subheader.model';
 // kt_header_menu
 // kt_aside_menu
 @Injectable({
-  providedIn: 'root',
+  providedIn: 'root'
 })
 export class SubheaderService implements OnDestroy {
-  titleSubject: BehaviorSubject<string> = new BehaviorSubject<string>(
-    'Dashboard'
-  );
+  titleSubject: BehaviorSubject<string> = new BehaviorSubject<string>('Dashboard');
   descriptionSubject: BehaviorSubject<string> = new BehaviorSubject<string>('');
-  breadCrumbsSubject: BehaviorSubject<
+  breadCrumbsSubject: BehaviorSubject<BreadcrumbItemModel[]> = new BehaviorSubject<
     BreadcrumbItemModel[]
-  > = new BehaviorSubject<BreadcrumbItemModel[]>([]);
-  subheaderVersionSubject: BehaviorSubject<string> = new BehaviorSubject<
-    string
-  >('v1'); // [1-6]
+  >([]);
+  subheaderVersionSubject: BehaviorSubject<string> = new BehaviorSubject<string>('v1'); // [1-6]
   // private fields
   private unsubscribe: Subscription[] = []; // Read more: => https://brianflove.com/2016/12/11/anguar-2-unsubscribe-observables/
 
@@ -52,17 +48,11 @@ export class SubheaderService implements OnDestroy {
     const aside = this.getBreadcrumbsAndTitle('kt_aside_menu', pathName);
     const header = this.getBreadcrumbsAndTitle('kt_header_menu', pathName);
     const breadcrumbs =
-      aside && aside.breadcrumbs.length > 0
-        ? aside.breadcrumbs
-        : header.breadcrumbs;
+      aside && aside.breadcrumbs.length > 0 ? aside.breadcrumbs : header.breadcrumbs;
 
     this.setBreadcrumbs(breadcrumbs);
 
-    this.setTitle(
-      aside && aside.title && aside.title.length > 0
-        ? aside.title
-        : header.title
-    );
+    this.setTitle(aside && aside.title && aside.title.length > 0 ? aside.title : header.title);
   }
 
   private getLinksFromMenu(menu): HTMLAnchorElement[] {
@@ -74,34 +64,20 @@ export class SubheaderService implements OnDestroy {
     ) as HTMLElement[];
     const result: HTMLAnchorElement[] = [];
     parentLiElements.forEach((el) => {
-      const links = Array.from(
-        el.getElementsByClassName('menu-link') || []
-      ) as HTMLAnchorElement[];
+      const links = Array.from(el.getElementsByClassName('menu-link') || []) as HTMLAnchorElement[];
       if (links && links.length > 0) {
         const aLink = links[0];
-        if (
-          aLink.href &&
-          aLink.href.length &&
-          aLink.href.length > 0 &&
-          aLink.innerHTML !== '/'
-        ) {
+        if (aLink.href && aLink.href.length && aLink.href.length > 0 && aLink.innerHTML !== '/') {
           result.push(aLink);
         }
       }
     });
 
     childLiElements.forEach((el) => {
-      const links = Array.from(
-        el.getElementsByClassName('menu-link') || []
-      ) as HTMLAnchorElement[];
+      const links = Array.from(el.getElementsByClassName('menu-link') || []) as HTMLAnchorElement[];
       if (links && links.length > 0) {
         const aLink = links[0];
-        if (
-          aLink.href &&
-          aLink.href.length &&
-          aLink.href.length > 0 &&
-          aLink.innerHTML !== '/'
-        ) {
+        if (aLink.href && aLink.href.length && aLink.href.length > 0 && aLink.innerHTML !== '/') {
           result.push(aLink);
         }
       }
@@ -133,7 +109,7 @@ export class SubheaderService implements OnDestroy {
           result.breadcrumbs.push({
             title: titleSpan.innerHTML,
             linkPath: link.pathname,
-            linkText: titleSpan.innerHTML,
+            linkText: titleSpan.innerHTML
           });
         }
       }

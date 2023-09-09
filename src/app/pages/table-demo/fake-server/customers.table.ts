@@ -393,7 +393,7 @@ export class CustomersTable {
     {
       id: 27,
       firstName: 'Freeland',
-      lastName: 'O\'Dougherty',
+      lastName: "O'Dougherty",
       email: 'fodoughertyq@cbsnews.com',
       userName: 'fodoughertyq',
       gender: 'Male',
@@ -573,7 +573,7 @@ export class CustomersTable {
     {
       id: 39,
       firstName: 'Cesar',
-      lastName: 'D\'Orsay',
+      lastName: "D'Orsay",
       email: 'cdorsay12@ezinearticles.com',
       userName: 'cdorsay12',
       gender: 'Male',
@@ -1293,7 +1293,7 @@ export class CustomersTable {
     {
       id: 87,
       firstName: 'Dasya',
-      lastName: 'O\'Nion',
+      lastName: "O'Nion",
       email: 'donion2e@addthis.com',
       userName: 'donion2e',
       gender: 'Female',
@@ -1488,7 +1488,7 @@ export class CustomersTable {
     {
       id: 100,
       firstName: 'Sibylla',
-      lastName: 'O\'Cahey',
+      lastName: "O'Cahey",
       email: 'socahey2r@paginegialle.it',
       userName: 'socahey2r',
       gender: 'Female',
