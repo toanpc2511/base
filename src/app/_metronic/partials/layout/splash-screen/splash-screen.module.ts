@@ -5,6 +5,6 @@ import { SplashScreenComponent } from './splash-screen.component';
 @NgModule({
   declarations: [SplashScreenComponent],
   imports: [CommonModule],
-  exports: [SplashScreenComponent],
+  exports: [SplashScreenComponent]
 })
 export class SplashScreenModule {}

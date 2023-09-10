@@ -27,6 +27,7 @@ import {
   DisplayTimePipe,
   IsFeatureDatePipe
 } from './fullcalender/shift.pipe';
+import { NgSelectModule } from 'src/app/shared/components/ng-select/public-api';
 
 @NgModule({
   declarations: [
@@ -56,6 +57,7 @@ import {
     NgbTooltipModule,
     NgbProgressbarModule,
     NgbTooltipModule,
+    NgSelectModule,
     RouterModule.forChild([
       {
         path: '',

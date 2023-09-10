@@ -1,7 +1,7 @@
 import { NgModule, APP_INITIALIZER } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
 import { ClipboardModule } from 'ngx-clipboard';
 import { TranslateModule } from '@ngx-translate/core';
@@ -17,11 +17,13 @@ import { SplashScreenModule } from './_metronic/partials/layout/splash-screen/sp
 // #fake-start#
 import { FakeAPIService } from './_fake/fake-api.service';
 import { ToastrModule } from 'ngx-toastr';
+import { NgxSpinnerModule } from 'ngx-spinner';
 
 import { FullCalendarModule } from '@fullcalendar/angular';
 import bootstrapPlugin from '@fullcalendar/bootstrap';
 import dayGridPlugin from '@fullcalendar/daygrid';
 import timeGridPlugin from '@fullcalendar/timegrid';
+import { LoadingInterceptor } from './shared/interceptors/loading.interceptor';
 // #fake-end#
 
 FullCalendarModule.registerPlugins([bootstrapPlugin, dayGridPlugin, timeGridPlugin]);
@@ -56,6 +58,7 @@ function appInitializer(authService: AuthService) {
     InlineSVGModule.forRoot(),
     NgbModule,
     FullCalendarModule,
+    NgxSpinnerModule,
     ToastrModule.forRoot({
       closeButton: true,
       progressBar: true,
@@ -81,6 +84,11 @@ function appInitializer(authService: AuthService) {
           json: () => import('highlight.js/lib/languages/json')
         }
       }
+    },
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: LoadingInterceptor,
+      multi: true
     }
   ],
   bootstrap: [AppComponent]
