@@ -17,7 +17,14 @@ import { SplashScreenModule } from './_metronic/partials/layout/splash-screen/sp
 // #fake-start#
 import { FakeAPIService } from './_fake/fake-api.service';
 import { ToastrModule } from 'ngx-toastr';
+
+import { FullCalendarModule } from '@fullcalendar/angular';
+import bootstrapPlugin from '@fullcalendar/bootstrap';
+import dayGridPlugin from '@fullcalendar/daygrid';
+import timeGridPlugin from '@fullcalendar/timegrid';
 // #fake-end#
+
+FullCalendarModule.registerPlugins([bootstrapPlugin, dayGridPlugin, timeGridPlugin]);
 
 function appInitializer(authService: AuthService) {
   return () => {
@@ -48,6 +55,7 @@ function appInitializer(authService: AuthService) {
     AppRoutingModule,
     InlineSVGModule.forRoot(),
     NgbModule,
+    FullCalendarModule,
     ToastrModule.forRoot({
       closeButton: true,
       progressBar: true,
